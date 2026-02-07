@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Alan’s Game Hub</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+:root{--neon:#00ffff;--bg:#050914;--card:#0e162a}
+*{box-sizing:border-box;font-family:Arial}
+body{margin:0;background:radial-gradient(circle at top,#0f1e3d,var(--bg));color:white}
+@media(max-width:900px){body::before{content:"🚫 COMPUTER ONLY";position:fixed;inset:0;background:black;display:grid;place-items:center;font-size:2rem;z-index:9999}}
+#login{height:100vh;display:grid;place-items:center}
+.login-box{background:var(--card);padding:30px;border-radius:15px;box-shadow:0 0 30px var(--neon)}
+.login-box input{width:100%;padding:10px;border:none;border-radius:8px}
+.login-box button{width:100%;margin-top:10px;padding:10px;background:var(--neon);border:none;font-weight:bold}
+#app{display:none}
+header{background:#060b18;padding:10px;display:flex;flex-wrap:wrap;gap:8px}
+header button{background:none;border:1px solid var(--neon);color:white;padding:6px 10px;cursor:pointer}
+header button:hover{background:var(--neon);color:black}
+main{height:calc(100vh - 60px)}
+#game{height:100%;padding:20px}
+iframe{width:100%;height:100%;border:none}
+.section{background:#0b1328;padding:15px;border-radius:10px;margin-bottom:15px}
+h2{color:var(--neon)}
+</style>
+</head>
+<body>
+
+<div id="login">
+  <div class="login-box">
+    <h2>🔐 Student Portal</h2>
+    <input id="pw" type="password" placeholder="Password">
+    <button onclick="login()">Enter</button>
+    <p id="err"></p>
+  </div>
+</div>
+
+<div id="app">
+<header>
+  <button onclick="study()">📘 Study Mode</button>
+  <button onclick="loadGame('https://slopegame.io')">Slope</button>
+  <button onclick="loadGame('https://run3.io')">Run 3</button>
+</header>
+<main>
+  <div id="game"></div>
+</main>
+</div>
+
+<script>
+const PASSWORD="Alansgame123";
+const game=document.getElementById("game");
+function login(){
+  if(pw.value===PASSWORD){loginDiv.style.display="none";app.style.display="block"}
+  else err.textContent="Wrong password";
+}
+const loginDiv=document.getElementById("login");
+const app=document.getElementById("app");
+function loadGame(url){game.innerHTML=`<iframe src="${url}"></iframe>`}
+function study(){
+  game.innerHTML=`
+  <div class="section"><h2>📐 Math</h2><ul><li>Order of Operations (PEMDAS)</li><li>Solving linear equations</li><li>Area & perimeter formulas</li></ul></div>
+  <div class="section"><h2>🧪 Science</h2><ul><li>States of matter</li><li>Scientific method steps</li><li>Basic cell structure</li></ul></div>
+  <div class="section"><h2>📖 English</h2><ul><li>Parts of speech</li><li>Essay structure</li><li>Common literary devices</li></ul></div>
+  <div class="section"><h2>🌍 History</h2><ul><li>American Revolution basics</li><li>Causes of World War I</li><li>Key historical vocabulary</li></ul></div>
+  `;
+}
+</script>
+</body>
+</html>
